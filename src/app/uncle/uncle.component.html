@@ -1,0 +1,14 @@
+<div style="background-color: darksalmon;">
+    <h3>Uncle component</h3>
+    <div *ngIf="viewmode">
+        View mode , id: {{id}} viewmode: {{viewmode}} 
+    </div>
+    <div *ngIf="!viewmode">
+        Edit mode, id: {{id}} viewmode: {{viewmode}} 
+    </div>
+    <h2>{{(viewmode$|async)==='true'?'VIEW':'EDIT'}}</h2>
+
+    <button (click)="toggleViewmode()">CHANGE MODE</button>
+    <br>
+    <!-- <button (click)="openDialog()">OPEN DIALOG</button> -->
+</div>
