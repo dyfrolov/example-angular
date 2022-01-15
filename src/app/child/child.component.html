@@ -1,22 +1,62 @@
 <h3>
     CHILD COMPONENT
 </h3>
+<form class="example-form">
+    <mat-form-field class="example-full-width" appearance="fill">
+      <mat-label>Email</mat-label>
+      <input required type="email" matInput [formControl]="emailFormControl" [errorStateMatcher]="matcher"
+             placeholder="Ex. pat@example.com">
+      <mat-hint>hint</mat-hint>
+      <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
+        Please enter a valid email address
+      </mat-error>
+      <mat-error *ngIf="emailFormControl.hasError('required')">
+        Email is <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" >
+      <mat-label>Enter your password</mat-label>
+      <input required matInput [type]="hidePassword ? 'password' : 'text'" [formControl]="passwordFormControl" [errorStateMatcher]="matcher">
+      <button mat-icon-button matSuffix (click)="hidePassword = !hidePassword" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hidePassword">
+        <mat-icon>{{hidePassword ? 'visibility_off' : 'visibility'}}</mat-icon>
+      </button>
+      <mat-hint>password hint</mat-hint>
+      <!-- <mat-error *ngIf="!passwordFormControl.hasError('required')"> -->
+      <mat-error *ngIf="passwordFormControl.hasError('password') && !passwordFormControl.hasError('required')">
+        Please enter a valid password
+      </mat-error>
+      <mat-error *ngIf="passwordFormControl.hasError('required')">
+        password is <strong>required</strong>
+      </mat-error>
+</mat-form-field>
+  <mat-icon>filter_alt</mat-icon>
+  <mat-icon>delete</mat-icon>
+  <mat-icon>delete_forever</mat-icon>
+  <mat-icon>logout</mat-icon>
+</form>
+<br>  
+<span>Filter string: {{filterString}}</span>
+<div class="filterable-menu-item">
+  <app-filter [ngClass]="filterString.trim()!=='' ? 'filtered' : 'not-filtered'" [filterTitle]="'Filter Title'" (onFilter)="onFilter($event)"></app-filter>
+  Column
+</div>
 <span *ngFor="let parent of parents">
    {{parent.id}}&nbsp;
 </span>
 <br>
 <br>
 <br>
-<button (click)="change()">Button in child component: {{expanded?"Collapse":"Expand"}}</button>
+<button mat-raised-button color="primary" (click)="change()">Button in child component: {{expanded?"Collapse":"Expand"}}</button>
 <br>
 <br>
 <br>
-<a [routerLink]="['uncle', '1']" [queryParams]="{'viewmode':true}"
+<a mat-raised-button color="primary" [routerLink]="['uncle', '1']" [queryParams]="{'viewmode':true}"
  routerLinkActive="active">view UncleComponent</a>
 <!-- <a routerLink="/uncle/1" routerLinkActive="active">view UncleComponent</a> -->
 <br>
 <br>
-<a [routerLink]="['uncle', '2']" [queryParams]="{'viewmode':false}"
+<a mat-raised-button color="primary" [routerLink]="['uncle', '2']" [queryParams]="{'viewmode':false}"
 routerLinkActive="active">edit UncleComponent</a>
 <br>
 <button (click)="setViewModeInUncleFalse()">SET VIEWMODE FALSE</button>

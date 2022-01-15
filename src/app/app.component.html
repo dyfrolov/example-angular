@@ -24,7 +24,8 @@
 <div [attr.visible]="httpError" class="alert alert-danger">
     {{httpError?.message}}
 </div>
-<div style="background-color: darkgrey; padding: 20px;">
+<div style="padding: 20px;">
+<!-- <div style="background-color: darkgrey; padding: 20px;"> -->
   <app-child [parents]="rows" (onChangedEvent)="onChanged($event)">
   </app-child>
 </div>
@@ -78,10 +79,12 @@
   <div style="background-color: beige;padding: 20px;">
     <ul >
       <li *ngFor="let row of rows">
+        <mat-slide-toggle [(ngModel)]="row.enabled"  color="primary" >
           {{row.name}}
+        </mat-slide-toggle>
           <ul *ngIf="row.childs && expanded">
               <li *ngFor="let child of row.childs">
-                {{child.name}}
+                {{child.name}} 
               </li>
           </ul>
   

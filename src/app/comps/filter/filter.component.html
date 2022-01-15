@@ -1,0 +1,22 @@
+<div style="position:relative">
+    <em (click)="onBtnFilterClick()" >
+        <mat-icon style="font-size: smaller;">filter_alt</mat-icon>
+    </em>
+    <!-- <button (click)="onBtnFilterClick()">filter</button> -->
+    <div style="position:absolute;padding:5px;width: 300px;background-color: beige;box-shadow: black 10px 10px 5px;" 
+    [ngClass]="show===true ? 'visible':'hidden'" >
+        {{filterTitle}}
+        <select name="" id="" [(ngModel)]="filterOperator">
+            <option value="=">=</option>
+            <option value="!=">!=</option>
+            <option value=">">></option>
+            <option value="<"><</option>
+        </select>
+        <input type="text" placeholder="filter string" [(ngModel)]="filterString">
+        <div style="padding:5px">
+            <button (click)="onBtnOkClick()">ok</button>
+            <button (click)="onBtnResetClick()">reset</button>
+        </div>
+    </div>
+</div>
+

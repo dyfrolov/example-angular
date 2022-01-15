@@ -1,0 +1,17 @@
+.filterable-menu-item{
+    display:flex;
+    cursor:pointer;
+}
+.filterable-menu-item app-filter{
+    visibility: hidden;
+}
+.filterable-menu-item app-filter.filtered{
+    visibility: visible;
+}
+
+.filterable-menu-item:hover app-filter{
+    visibility: visible;
+}
+.filterable-menu-item:hover app-filter.not-filtered{
+    color:lightgrey;
+}
